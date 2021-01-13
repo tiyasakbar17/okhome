@@ -50,34 +50,38 @@ function First() {
     const loopInput = () => {
         const inputDate = [];
         for (let index = 0; index < state.count; index++) {
-            inputDate.push(<input type="date" key={index} name={`${index}`} onChange={dateHandler} className="userInput" />)
+            inputDate.push(
+                <input type="date" key={index} name={`${index}`} onChange={dateHandler} className="form-control mb-1" />
+            )
         }
         return inputDate
     }
 
     return (
-        <div>
-            <div className="upper column">
+        <div className="container">
+            <div className="upper column mb-3">
                 <label htmlFor="count">Total service date</label>
-                <input type="text" name="count" value={state.count} onChange={countHandler} />
+                <input type="text" className="form-control" name="count" value={state.count} onChange={countHandler} />
             </div>
-            <div className="mid column">
-                <span>Service Date</span>
+            <div className="mid column mb-3">
+                {
+                    state.count > 0 ? <span>Service Dates</span> : null
+                }
                 {
                     state.count > 0 ? loopInput() : null
                 }
             </div>
-            <div>
+            <div className="mb-3">
                 <label htmlFor="dateStart">Date Today</label>
-                <input type="date" name="dateStart" value={state.dateStart} onChange={changeHandler} />
-                <button onClick={() => firstFunction(state.dateStart, state.listDate)} >start</button>
+                <input type="date" name="dateStart" className="form-control mb-1" value={state.dateStart} onChange={changeHandler} />
+                <button className="btn btn-success" onClick={() => firstFunction(state.dateStart, state.listDate)} >start</button>
             </div>
             <div className="lower column">
                 <span>Services</span>
                 {
                     state.sortedDate.map((date, i) => {
                         i = i + 1;
-                        return <input type="date" value={date} disabled key={i} />
+                        return <input className="form-control" type="date" value={date} disabled key={i} />
                     })
                 }
             </div>
