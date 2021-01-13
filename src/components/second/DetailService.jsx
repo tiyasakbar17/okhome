@@ -75,8 +75,8 @@ const DetailService = ({ data, updateInstance, deleteInstance, addInstance }) =>
                 <Form>
                     {state.click ?
                         <>
-                            <Field type="text" name="name" />
-                            <ErrorMessage name="name" />
+                            <Field type="text" name="name"></Field>
+                            <ErrorMessage name="name"></ErrorMessage>
                         </>
                         :
                         null}
