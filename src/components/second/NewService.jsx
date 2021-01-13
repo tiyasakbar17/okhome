@@ -33,7 +33,7 @@ function NewService({ addServices, closeClicker }) {
     const loopInput = () => {
         const inputDate = [];
         for (let index = 0; index < state.count; index++) {
-            inputDate.push(<input type="text" key={index} name={`${index}`} onChange={inputHandler} className="userInput" />)
+            inputDate.push(<input type="text" key={index} name={`${index}`} onChange={inputHandler} className="form-control mb-1" />)
         }
         return inputDate
     };
@@ -47,37 +47,41 @@ function NewService({ addServices, closeClicker }) {
         }))
     }
     return (
-        <Formik
-            onSubmit={onSubmit}
-            initialValues={initialValues}
-            validationSchema={validationSchema} >
-            <Form>
-                <div className="column">
-                    <label htmlFor="serviceName">Service Name</label>
-                    <Field type="text" name="serviceName"></Field>
-                    <ErrorMessage name="serviceName" ></ErrorMessage>
-                </div>
-                <div className="column">
-                    <label htmlFor="date">Date</label>
-                    <Field type="date" name="date"></Field>
-                    <ErrorMessage name="date" ></ErrorMessage>
-                </div>
-                <div className="column">
-                    <label htmlFor="date">Instances</label>
-                    <input type="text" name="count" value={state.count} onChange={countHandler} />
-                    <div className="column">
-                        <span>Instance Name</span>
-                        {
-                            state.count > 0 ? loopInput() : null
-                        }
+        <div className="container">
+            <Formik
+                onSubmit={onSubmit}
+                initialValues={initialValues}
+                validationSchema={validationSchema} >
+                <Form>
+                    <div className="column mb-3">
+                        <label htmlFor="serviceName">Service Name</label>
+                        <Field type="text" className="form-control" name="serviceName"></Field>
+                        <ErrorMessage name="serviceName" ></ErrorMessage>
                     </div>
-                </div>
-                <div className="flex">
-                    <button type="submit" >Submit</button>
-                    <button onClick={closeClicker} >Cancel</button>
-                </div>
-            </Form>
-        </Formik>
+                    <div className="column mb-3">
+                        <label htmlFor="date">Date</label>
+                        <Field type="date" className="form-control" name="date"></Field>
+                        <ErrorMessage name="date" ></ErrorMessage>
+                    </div>
+                    <div className="column mb-3">
+                        <label htmlFor="date">Instances</label>
+                        <input type="text" className="form-control" name="count" value={state.count} onChange={countHandler} />
+                        <div className="column">
+                            {
+                                state.count > 0 ? <span>Instance Name</span> : null
+                            }
+                            {
+                                state.count > 0 ? loopInput() : null
+                            }
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <button className="btn btn-success" type="submit" >Submit</button>
+                        <button onClick={closeClicker} className="btn btn-danger ml-2" >Cancel</button>
+                    </div>
+                </Form>
+            </Formik>
+        </div>
     )
 }
 

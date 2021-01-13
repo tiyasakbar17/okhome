@@ -11,11 +11,11 @@ function Table({ data, counter, deleteServices }) {
     }
     return (
         <tr>
-            <th>{counter}</th>
+            <th scope="row">{counter}</th>
             <td>{new Date(date).toLocaleDateString("id-ID", options)}</td>
             <td style={{ cursor: "pointer" }} onClick={clickDetail} >{name}</td>
             <td>
-                <button onClick={deleteHandler}>Delete</button>
+                <button className="btn btn-danger" onClick={deleteHandler}>Delete</button>
             </td>
         </tr>
     )

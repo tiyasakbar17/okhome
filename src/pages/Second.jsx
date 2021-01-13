@@ -15,12 +15,13 @@ function Second({ loadServices, Services }) {
         details: false,
         detailData: null,
         style: {
-            minWidth: "300px",
-            maxHeight: "90%",
+            maxWidth: "800px",
+            height: "90%",
             overflow: "auto",
             padding: "20px",
             backgroundColor: "white",
-            borderRadius: "5px"
+            borderRadius: "5px",
+            margin: "auto"
         },
         styleDetail: {
             minWidth: "300px",
@@ -57,13 +58,13 @@ function Second({ loadServices, Services }) {
             {
                 state.details ? <PopUpContainer onClick={clickDetail} style={state.styleDetail} item={<DetailService data={Services.services.find(service => service.id === state.detailData)} closeClicker={clickDetail} />} /> : null
             }
-            <div>
+            <div className="container">
                 <div className="upperSecond flex">
-                    <button onClick={clickAdd} >Add Service</button>
+                    <button onClick={clickAdd} className="btn btn-primary mb-3" >Add Service</button>
                 </div>
                 <div className="content column">
-                    <table>
-                        <thead className="tableHead">
+                    <table className="table ">
+                        <thead className="thead-light">
                             <tr>
                                 <th className="tableNumber">No</th>
                                 <th>Tanggal</th>
