@@ -1,0 +1,89 @@
+import React from 'react'
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { connect } from 'react-redux';
+import { addServices } from '../../redux/actions/services';
+
+
+function NewService({ addServices, closeClicker }) {
+    const [state, setState] = React.useState({
+        count: 0,
+        instanceNames: []
+    })
+    const onSubmit = (values) => {
+        const data = {
+            ...values,
+            instanceNames: state.instanceNames
+        };
+        addServices(data).then(() => {
+            closeClicker()
+        });
+    };
+    const initialValues = {
+        serviceName: "",
+        date: '',
+    };
+    const validationSchema = Yup.object({
+        serviceName: Yup.string().required(),
+        date: Yup.date().required()
+    });
+    const countHandler = (e) => {
+        setState(() => ({ [e.target.name]: e.target.value, instanceNames: [] }))
+    };
+    const loopInput = () => {
+        const inputDate = [];
+        for (let index = 0; index < state.count; index++) {
+            inputDate.push(<input type="text" key={index} name={`${index}`} onChange={inputHandler} className="userInput" />)
+        }
+        return inputDate
+    };
+    const inputHandler = (e) => {
+        const index = parseInt(e.target.name);
+        const copyDate = [...state.instanceNames];
+        copyDate[index] = e.target.value
+        setState(prev => ({
+            ...prev,
+            instanceNames: copyDate
+        }))
+    }
+    return (
+        <Formik
+            onSubmit={onSubmit}
+            initialValues={initialValues}
+            validationSchema={validationSchema} >
+            <Form>
+                <div className="column">
+                    <label htmlFor="serviceName">Service Name</label>
+                    <Field type="text" name="serviceName"></Field>
+                    <ErrorMessage name="serviceName" ></ErrorMessage>
+                </div>
+                <div className="column">
+                    <label htmlFor="date">Date</label>
+                    <Field type="date" name="date"></Field>
+                    <ErrorMessage name="date" ></ErrorMessage>
+                </div>
+                <div className="column">
+                    <label htmlFor="date">Instances</label>
+                    <input type="text" name="count" value={state.count} onChange={countHandler} />
+                    <div className="column">
+                        <span>Instance Name</span>
+                        {
+                            state.count > 0 ? loopInput() : null
+                        }
+                    </div>
+                </div>
+                <div className="flex">
+                    <button type="submit" >Submit</button>
+                    <button onClick={closeClicker} >Cancel</button>
+                </div>
+            </Form>
+        </Formik>
+    )
+}
+
+const mapDispatchToProps = {
+    addServices
+}
+
+
+export default connect(null, mapDispatchToProps)(NewService)

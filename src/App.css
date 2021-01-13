@@ -1,7 +1,69 @@
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 .flex {
   display: flex;
 }
 .column {
   display: flex;
   flex-direction: column;
+}
+.pointer {
+  cursor: pointer;
+}
+.header {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 80px;
+  margin-bottom: 30px;
+  padding: 0 10%;
+  border-bottom: black 2px solid;
+  display: flex;
+  align-items: center;
+  background-color: whitesmoke;
+}
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.headerItem {
+  color: burlywood;
+  font-size: 28px;
+  margin-left: 40px;
+}
+.images {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.clickableBackground {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 102;
+}
+.visibleBackground {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  place-content: center center;
+  background-color: rgba(0, 0, 0, 0.742);
+  z-index: 101;
+  padding: 30px;
+}
+.containpop {
+  position: relative;
+  z-index: 103;
 }
