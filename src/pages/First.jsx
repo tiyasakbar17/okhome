@@ -81,7 +81,7 @@ function First() {
                 {
                     state.sortedDate.map((date, i) => {
                         i = i + 1;
-                        return <input className="form-control" type="date" value={date} disabled key={i} />
+                        return <input className="form-control mb-1" type="date" value={date} disabled key={i} />
                     })
                 }
             </div>
