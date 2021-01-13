@@ -31,4 +31,16 @@ module.exports = {
       failedResponse(res, "Failed to add service");
     }
   },
+  deleteInstance: async (req, res) => {
+    try {
+      const result = await instance.destroy({
+        where: {
+          id: parseInt(req.params.id),
+        },
+      });
+      successResponse(res, result, "Instance Deleted", "instance");
+    } catch (error) {
+      failedResponse(res, "Failed to add service");
+    }
+  },
 };

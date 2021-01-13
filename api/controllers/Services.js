@@ -55,12 +55,12 @@ module.exports = {
     try {
       const result = await service.destroy({
         where: {
-          id: req.body.id,
+          id: parseInt(req.params.id),
         },
       });
       successResponse(res, result, "Service Deleted", "service");
     } catch (error) {
-      failedResponse(res, "Failed to add service");
+      failedResponse(res, "Failed to delete service");
     }
   },
 };
