@@ -5,7 +5,7 @@ const configJson = {
         "Content-type": "application/json",
     },
 };
-const baseUrl = 'http://localhost:5000/api/v1';
+const baseUrl = 'https://okhome-tiyas.herokuapp.com/api/v1';
 
 export const updateInstance = (data) => async (dispatch) => {
     try {
