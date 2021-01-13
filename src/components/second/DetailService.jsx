@@ -27,10 +27,12 @@ const DetailService = ({ data, updateInstance, deleteInstance, addInstance }) =>
         deleteInstance(id)
     };
     return (
-        <div>
-            <span>Service: <strong>{data.name}</strong></span>
-            <table>
-                <thead>
+        <div className="container">
+            <div className="d-flex justify-content-center">
+                <span className="h4">Service: <strong>{data.name}</strong></span>
+            </div>
+            <table className="table">
+                <thead className="thead-light">
                     <tr>
                         <th>No</th>
                         <th>Instance Name</th>
@@ -46,13 +48,17 @@ const DetailService = ({ data, updateInstance, deleteInstance, addInstance }) =>
                             return (
                                 <Fragment key={i} >
                                     <tr>
-                                        <th>{i}</th>
+                                        <th scope="row">{i}</th>
                                         <td>{element.name}</td>
-                                        <td>{element.status}</td>
+                                        <td className={
+                                            element.status === "waiting" ? "text-warning" :
+                                                element.status === "done" ? "text-success" :
+                                                    "text-danger"
+                                        } >{element.status}</td>
                                         <td>
-                                            <button onClick={() => actionHandler(element.id, "done")} disabled={element.status === "done" ? true : false} >Done</button>
-                                            <button onClick={() => actionHandler(element.id, "missed")} disabled={element.status === "missed" ? true : false} >Missed</button>
-                                            <button onClick={() => deleteHandler(element.id)} >delete</button>
+                                            <button className="btn btn-success" onClick={() => actionHandler(element.id, "done")} disabled={element.status === "done" ? true : false} >Done</button>
+                                            <button className="btn btn-warning ml-1" onClick={() => actionHandler(element.id, "missed")} disabled={element.status === "missed" ? true : false} >Missed</button>
+                                            <button className="btn btn-danger ml-1" onClick={() => deleteHandler(element.id)} >delete</button>
                                         </td>
                                     </tr>
                                 </Fragment>
@@ -75,14 +81,15 @@ const DetailService = ({ data, updateInstance, deleteInstance, addInstance }) =>
                 <Form>
                     {state.click ?
                         <>
-                            <Field type="text" name="name"></Field>
+                            <label htmlFor="name">New Instance</label>
+                            <Field type="text" className="form-control mb-1" name="name"></Field>
                             <ErrorMessage name="name"></ErrorMessage>
                         </>
                         :
                         null}
                     <div>
-                        {state.click ? <button type="submit">submit</button> : null}
-                        <button onClick={clickHandler} type="button" >{state.click ? "cancel" : "add instance"}</button>
+                        {state.click ? <button className="btn btn-success" type="submit">submit</button> : null}
+                        <button className={state.click ? "btn btn-danger ml-2" : "btn btn-primary"} onClick={clickHandler} type="button" >{state.click ? "cancel" : "add instance"}</button>
                     </div>
                 </Form>
             </Formik>

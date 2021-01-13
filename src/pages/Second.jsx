@@ -22,14 +22,6 @@ function Second({ loadServices, Services }) {
             backgroundColor: "white",
             borderRadius: "5px",
             margin: "auto"
-        },
-        styleDetail: {
-            minWidth: "300px",
-            maxHeight: "90%",
-            overflow: "auto",
-            padding: "20px",
-            backgroundColor: "white",
-            borderRadius: "5px"
         }
     };
     const [state, setState] = React.useState(initialState);
@@ -56,7 +48,7 @@ function Second({ loadServices, Services }) {
                 state.clicked ? <PopUpContainer onClick={clickAdd} style={state.style} item={<NewService closeClicker={clickAdd} />} /> : null
             }
             {
-                state.details ? <PopUpContainer onClick={clickDetail} style={state.styleDetail} item={<DetailService data={Services.services.find(service => service.id === state.detailData)} closeClicker={clickDetail} />} /> : null
+                state.details ? <PopUpContainer onClick={clickDetail} style={state.style} item={<DetailService data={Services.services.find(service => service.id === state.detailData)} closeClicker={clickDetail} />} /> : null
             }
             <div className="container">
                 <div className="upperSecond flex">
