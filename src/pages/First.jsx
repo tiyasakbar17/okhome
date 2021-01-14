@@ -26,7 +26,7 @@ function First() {
     const firstFunction = (dateStart, listDate) => {
         const sorted = [];
         const copyList = [...listDate]
-        copyList.sort(compare()).map(date => date > dateStart ? sorted.push(date) : null)
+        copyList.sort(compare()).map(date => date >= dateStart ? sorted.push(date) : null)
         setState(prev => ({
             ...prev,
             sortedDate: sorted
